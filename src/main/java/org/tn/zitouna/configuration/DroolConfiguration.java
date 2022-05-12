@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @Configuration
 public class DroolConfiguration {
 
-	private static final String drlFile = "RapportODRules.drl";
+	private static final String drlFile = "rules/RapportODRules.drl";
 
     @Bean
     public KieContainer kieContainer() {
