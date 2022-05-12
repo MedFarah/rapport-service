@@ -1,0 +1,8 @@
+import org.tn.zitouna.entities.RapportOperationDevise;
+rule "HDFC"
+
+when
+uInstance : RapportOperationDevise(numeroDeclaration==7);
+then
+uInstance.setNumeroDeclaration(10L);
+end;
