@@ -15,7 +15,7 @@ public class RapportPM {
 	private Entete entete;
 	@Id
 	private Long numeroDeclaration;
-	private final int codeEnregistrement = 110;
+	private  int codeEnregistrement = 110;
 	private String codeOperation = "N";
 	private String typeIdentifiantPersonne;
 	private String numeroIdentifiantPersonne;

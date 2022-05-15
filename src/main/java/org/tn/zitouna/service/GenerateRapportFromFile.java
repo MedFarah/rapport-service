@@ -22,8 +22,9 @@ public class GenerateRapportFromFile implements IGenerateRapportFromFile {
 		DateFormat sourceFormat = new SimpleDateFormat("dd/MM/yyyy");
 		
 		rpp.setNumeroDeclaration(Long.valueOf(line.substring(0, 7)));
-		rpp.setCodeOperation(line.charAt(10));
-		rpp.setTypeDocument(line.charAt(11));
+		rpp.setCodeEnregistrement(Integer.valueOf(line.substring(7, 10)));
+		rpp.setCodeOperation(line.substring(10, 11));
+		rpp.setTypeDocument(line.substring(11, 12));
 		rpp.setNumeroDocumentIdentification(line.substring(12, 27));
 		
 		String dateDebutDocumentIdentification = line.substring(27, 35);
@@ -42,7 +43,7 @@ public class GenerateRapportFromFile implements IGenerateRapportFromFile {
 		
 		rpp.setNomPersonPhysique(line.substring(103, 163));
 		rpp.setPrenomPersonnePhysique(line.substring(163, 223));
-		rpp.setSexePersonnePhysique(line.charAt(223));
+		rpp.setSexePersonnePhysique(line.substring(223,224));
 		
 		String dateNaissance = line.substring(224, 232);
 		dateNaissance = this.addChar(dateNaissance, '/', 2);
@@ -54,7 +55,7 @@ public class GenerateRapportFromFile implements IGenerateRapportFromFile {
 		rpp.setQualitePersonne(line.substring(292, 294));
 		rpp.setNationalite(line.substring(294, 297));
 		rpp.setProfession(line.substring(297, 301));
-		rpp.setEtatCivil(line.charAt(301));
+		rpp.setEtatCivil(line.substring(301, 302));
 		rpp.setSituationJuridique(Integer.valueOf(line.substring(302, 304)));
 		
 		String dateSituationJuridique = line.substring(304, 312);
@@ -77,7 +78,8 @@ public class GenerateRapportFromFile implements IGenerateRapportFromFile {
 		// TODO Auto-generated method stub
 		RapportPM rpm = new RapportPM();
 		rpm.setNumeroDeclaration(Long.valueOf(line.substring(0, 7)));
-		rpm.setCodeOperation(line.charAt(10));
+		rpm.setCodeEnregistrement(Integer.valueOf(line.substring(7, 10)));
+		rpm.setCodeOperation(line.substring(10, 11));
 		rpm.setTypeIdentifiantPersonne(line.substring(11, 13));
 		rpm.setNumeroIdentifiantPersonne(line.substring(13, 28));
 		rpm.setNumeroRegistreCommerce(line.substring(28, 41));
@@ -130,8 +132,9 @@ public class GenerateRapportFromFile implements IGenerateRapportFromFile {
 		RapportOperationDevise rop = new RapportOperationDevise();
 		Long numDeclaration = Long.valueOf(line.substring(0, 7));
 		rop.setNumeroDeclaration(numDeclaration);
-		rop.setCodeOperation(line.charAt(9));
-		rop.setTypeIdentifiantClient(line.charAt(10));
+		rop.setCodeEnregistrement(Integer.valueOf(line.substring(7, 10)));
+		rop.setCodeOperation(line.substring(9, 10));
+		rop.setTypeIdentifiantClient(line.substring(10, 11));
 		rop.setNumIdentifiantClient(line.substring(19, 34));
 		rop.setCodeAgenceDeclarant(Integer.valueOf(line.substring(34, 37)));
 		rop.setIdentifiantInterneOperation(line.substring(37, 44));
