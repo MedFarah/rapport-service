@@ -5,7 +5,7 @@ import java.util.Date;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -30,12 +30,16 @@ public class RapportPM {
 	private String codeActivitePM;
 	private int codeRegime;
 	private int codeSituation;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dateSituationJuridique;
 	private String referenceJortSituationJuridique;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date creationPM;
 	private String referenceJortPM;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dateEntreExploitation;
 	private int montantCapitalPM;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dateFixationCapitalSocial;
 	
 	private String numeroTelephone1;

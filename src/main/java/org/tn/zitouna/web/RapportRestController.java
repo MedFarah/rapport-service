@@ -2,8 +2,12 @@ package org.tn.zitouna.web;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
+import org.bson.json.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +29,7 @@ import org.tn.zitouna.service.RapportPPService;
 
 @RestController
 @RequestMapping("/rapport")
+@CrossOrigin("*")
 public class RapportRestController {
 	private RapportODService rapportODService;
 	private RapportPPService rapportPPService;
@@ -43,18 +48,18 @@ public class RapportRestController {
 	}
 	
 	//************************************** Jasper report **************************************************
-	@GetMapping(path ="/generateRapportOD", produces = "application/json")
-	public String generateRapportOD(@RequestParam(name = "format",required = true) String rapportFormat) throws Exception {
+	@GetMapping(path ="/generateRapportOD", produces = MediaType.APPLICATION_JSON_VALUE)
+	public String generateRapportOD(@RequestParam(name = "format",required = true,defaultValue = "csv") String rapportFormat,HttpServletResponse response) throws Exception {
 		return generateRapportImpl.generateRapportOD(rapportFormat);
 	}
 	
 	@GetMapping(path ="/generateRapportPP", produces = "application/json")
-	public String generateRapportPP(@RequestParam(name = "format",required = true) String rapportFormat) throws Exception {
+	public String generateRapportPP(@RequestParam(name = "format",required = true,defaultValue = "csv") String rapportFormat) throws Exception {
 		return generateRapportImpl.generateRapportPP(rapportFormat);
 	}
 	
 	@GetMapping(path ="/generateRapportPM", produces = "application/json")
-	public String generateRapportPM(@RequestParam(name = "format",required = true) String rapportFormat) throws Exception {
+	public String generateRapportPM(@RequestParam(name = "format",required = true,defaultValue = "csv") String rapportFormat) throws Exception {
 		return generateRapportImpl.generateRapportPM(rapportFormat);
 	}
 	
@@ -81,8 +86,8 @@ public class RapportRestController {
 	public List<RapportOperationDevise> afficherRapportsOD() {
 		return rapportODService.afficherRapports();
 	}
-	@GetMapping(path = "/rapportOD",produces = "application/json",consumes = MediaType.APPLICATION_JSON_VALUE)
-	public RapportOperationDevise afficherRapportODById(@RequestParam(name = "id",required = true) Long id) {
+	@GetMapping(path = "/rapportOD/{id}",produces = "application/json")
+	public RapportOperationDevise afficherRapportODById(@PathVariable Long id) {
 		return rapportODService.afficherRapportById(id);
 	}
 	@PostMapping(path = "/rapportOD",produces = "application/json", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -93,7 +98,7 @@ public class RapportRestController {
 	public RapportOperationDevise modifierRapportOD(@RequestBody RapportOperationDevise rapportOperationDevise) {
 		return rapportODService.modifierRapport(rapportOperationDevise);
 	}
-	@DeleteMapping(path = "/rapportOD/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(path = "/rapportOD/{id}")
 	public void supprimerRapportOD(@PathVariable Long id) {
 		rapportODService.supprimerRapport(id);
 	}
@@ -103,8 +108,8 @@ public class RapportRestController {
 	public List<RapportPP> afficherRapportsPP() {
 		return rapportPPService.afficherRapports();
 	}
-	@GetMapping(path = "/rapportPP",produces = "application/json",consumes = MediaType.APPLICATION_JSON_VALUE)
-	public RapportPP afficherRapportPPById(@RequestParam(name = "id",required = true) Long id) {
+	@GetMapping(path = "/rapportPP{id}",produces = "application/json")
+	public RapportPP afficherRapportPPById(@PathVariable  Long id) {
 		return rapportPPService.afficherRapportById(id);
 	}
 	@PostMapping(path = "/rapportPP",produces = "application/json", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -115,7 +120,7 @@ public class RapportRestController {
 	public RapportPP modifierRapportPP(@RequestBody RapportPP rapportOperationDevise) {
 		return rapportPPService.modifierRapport(rapportOperationDevise);
 	}
-	@DeleteMapping(path = "/rapportPP/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(path = "/rapportPP/{id}")
 	public void supprimerRapportPP(@PathVariable Long id) {
 		rapportPPService.supprimerRapport(id);
 	}
@@ -125,8 +130,8 @@ public class RapportRestController {
 	public List<RapportPM> afficherRapportsPM() {
 		return rapportPMService.afficherRapports();
 	}
-	@GetMapping(path = "/rapportPM",produces = "application/json",consumes = MediaType.APPLICATION_JSON_VALUE)
-	public RapportPM afficherRapportPMById(@RequestParam(name = "id",required = true) Long id) {
+	@GetMapping(path = "/rapportPM/{id}",produces = "application/json")
+	public RapportPM afficherRapportPMById(@PathVariable  Long id) {
 		return rapportPMService.afficherRapportById(id);
 	}
 	@PostMapping(path = "/rapportPM",produces = "application/json", consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -137,7 +142,7 @@ public class RapportRestController {
 	public RapportPM modifierRapportPM(@RequestBody RapportPM rapportOperationDevise) {
 		return rapportPMService.modifierRapport(rapportOperationDevise);
 	}
-	@DeleteMapping(path = "/rapportPM/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
+	@DeleteMapping(path = "/rapportPM/{id}")
 	public void supprimerRapportPM(@PathVariable Long id) {
 		rapportPMService.supprimerRapport(id);
 	}

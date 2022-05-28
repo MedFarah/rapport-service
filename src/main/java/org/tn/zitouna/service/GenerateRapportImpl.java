@@ -7,6 +7,7 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletResponse;
 
+import org.bson.json.JsonObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ResourceUtils;
@@ -94,17 +95,18 @@ public class GenerateRapportImpl implements GenerateRapport {
 			exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
 			exporter.setExporterOutput(new SimpleWriterExporterOutput("rapportOperationDevise.csv"));
 			exporter.exportReport();
-			resultat = "success";
-		} /*
-			 * else if(rapportFormat.equals("xls")) { JRXlsxExporter exporter = new
-			 * JRXlsxExporter();
-			 * 
-			 * // Set input and output ... SimpleXlsxReportConfiguration reportConfig = new
-			 * SimpleXlsxReportConfiguration();
-			 * reportConfig.setsheetsetSheetNames(dataList);
-			 * 
-			 * exporter.setConfiguration(reportConfig); exporter.exportReport(); }
-			 */
+			resultat = "{success}";
+		} 
+		/*
+		 * else if(rapportFormat.equals("xls")) { JRXlsxExporter exporter = new
+		 * JRXlsxExporter();
+		 * 
+		 * // Set input and output ... SimpleXlsxReportConfiguration reportConfig = new
+		 * SimpleXlsxReportConfiguration();
+		 * reportConfig.setsheetsetSheetNames(dataList);
+		 * 
+		 * exporter.setConfiguration(reportConfig); exporter.exportReport(); }
+		 */
 
 		return resultat;
 	}

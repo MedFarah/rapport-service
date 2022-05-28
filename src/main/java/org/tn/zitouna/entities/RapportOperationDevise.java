@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.mongodb.lang.NonNull;
 
@@ -27,6 +28,7 @@ public class RapportOperationDevise {
 	private int codeAgenceDeclarant;
 	@Field(name = "NINTOPER")
 	private String identifiantInterneOperation;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dateOperation;
 	private String codeTypeOperation;
 	private String codeDevise;
@@ -34,6 +36,7 @@ public class RapportOperationDevise {
 	private Double montantEnDinar;
 	@Field(name = "NumDeclarationDouane")
 	private String numDeclarationDouane;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dateDeclarationDouane;
 	private Double montantDeclareEnDouane;
 	@JsonIgnore

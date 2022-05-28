@@ -3,6 +3,7 @@ package org.tn.zitouna.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,10 +20,10 @@ public class RapportPP {
 	private String codeOperation = "N";
 	private String typeDocument;
 	private String numeroDocumentIdentification;
-
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dateDebutDocumentIdentification;
 	private String lieuDelivranceDocumentIdentification;
-
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dateFinValiditeDocumentIdentification;
 
 	private String nomPersonPhysique;
@@ -35,6 +36,7 @@ public class RapportPP {
 	private String profession;
 	private String etatCivil;
 	private int situationJuridique;
+	@JsonFormat(pattern="yyyy-MM-dd")
 	private Date dateSituationJuridique;
 	private String numeroTelephone1;
 	private String numeroTelephone2;
