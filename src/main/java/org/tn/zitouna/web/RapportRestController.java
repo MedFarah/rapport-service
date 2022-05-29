@@ -108,7 +108,7 @@ public class RapportRestController {
 	public List<RapportPP> afficherRapportsPP() {
 		return rapportPPService.afficherRapports();
 	}
-	@GetMapping(path = "/rapportPP{id}",produces = "application/json")
+	@GetMapping(path = "/rapportPP/{id}",produces = "application/json")
 	public RapportPP afficherRapportPPById(@PathVariable  Long id) {
 		return rapportPPService.afficherRapportById(id);
 	}
