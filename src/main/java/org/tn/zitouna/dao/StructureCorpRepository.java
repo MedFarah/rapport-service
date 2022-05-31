@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import org.tn.zitouna.entities.StructureCorp;
 
 @Repository
-public interface StructureCorpRepository extends MongoRepository<StructureCorp	, Object>{
+public interface StructureCorpRepository extends MongoRepository<StructureCorp	, String>{
 
 }

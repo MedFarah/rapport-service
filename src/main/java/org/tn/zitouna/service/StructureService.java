@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 public interface StructureService <X> {
 	public X ajouterStructure(X structure);
 	public X modifierStructure(X structure);
-	public void supprimerStructure(X structure);
+	public void supprimerStructure(String id);
 	public List<X> afficherStructures();
+	public X getStructure(String id);
 }

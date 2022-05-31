@@ -5,6 +5,6 @@ import org.springframework.stereotype.Repository;
 import org.tn.zitouna.entities.StructureFin;
 
 @Repository
-public interface StructureFinRepository extends MongoRepository<StructureFin, Object> {
+public interface StructureFinRepository extends MongoRepository<StructureFin, String> {
 
 }

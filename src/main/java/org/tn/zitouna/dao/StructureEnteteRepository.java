@@ -4,6 +4,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 import org.tn.zitouna.entities.StructureEntete;
 @Repository
-public interface StructureEnteteRepository extends MongoRepository<StructureEntete, Long> {
+public interface StructureEnteteRepository extends MongoRepository<StructureEntete, String> {
 
 }

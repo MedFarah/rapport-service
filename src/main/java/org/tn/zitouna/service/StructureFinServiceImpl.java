@@ -1,6 +1,7 @@
 package org.tn.zitouna.service;
 
 import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,15 +26,21 @@ public class StructureFinServiceImpl implements StructureService<StructureFin> {
 	}
 
 	@Override
-	public void supprimerStructure(StructureFin structure) {
+	public void supprimerStructure(String id) {
 		// TODO Auto-generated method stub
-		structureFinRepository.delete(structure);
+		structureFinRepository.deleteById(id);
 	}
 
 	@Override
 	public List<StructureFin> afficherStructures() {
 		// TODO Auto-generated method stub
 		return structureFinRepository.findAll();
+	}
+
+	@Override
+	public StructureFin getStructure(String id) {
+		// TODO Auto-generated method stub
+		return structureFinRepository.findById(id).get();
 	}
 
 }
