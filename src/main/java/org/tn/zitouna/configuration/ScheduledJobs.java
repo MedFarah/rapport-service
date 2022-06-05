@@ -11,7 +11,7 @@ public class ScheduledJobs {
   @Value("${jobs.menseul.value}")
   private boolean isEnabled;
 
-  @Scheduled(fixedDelay = 60000)
+ /* @Scheduled(fixedDelay = 60000)
   public void cleanTempDirectory() {
     if(isEnabled) {
       // do work here
@@ -19,5 +19,5 @@ public class ScheduledJobs {
     }else {
     	System.out.println(" test s7i7"+isEnabled);
     }
-  }
+  }*/
 }

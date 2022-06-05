@@ -44,12 +44,7 @@ public class StructureController {
 		this.s=s;
 	}
 	
-	//test mail
-	@GetMapping("/mail")
-	private void testmail() {
-		s.cleanTempDirectory();
-		// e.sendMail("wissalyahyaoui97@gmail.com", "spring boot Mail", "this is a test please dont reply");
-	}
+	
 	
 	@PostMapping(path = "/corp",produces = "application/json", consumes = MediaType.APPLICATION_JSON_VALUE)
 	public StructureCorp ajouterStructureCorp(@RequestBody StructureCorp entity) {
