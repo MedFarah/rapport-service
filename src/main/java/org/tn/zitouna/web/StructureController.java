@@ -26,7 +26,6 @@ import org.tn.zitouna.service.StructureFinServiceImpl;
 @RestController
 @RequestMapping(path = "/structure",produces = "application/json")
 @ResponseBody
-@CrossOrigin("*")
 public class StructureController {
 	private StructureCorpServiceImpl structureCorpServiceImpl;
 	private StructureEnteteServiceImpl structureEnteteServiceImpl;

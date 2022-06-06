@@ -29,7 +29,6 @@ import org.tn.zitouna.service.RapportPPService;
 
 @RestController
 @RequestMapping("/rapport")
-@CrossOrigin("*")
 public class RapportRestController {
 	private RapportODService rapportODService;
 	private RapportPPService rapportPPService;
