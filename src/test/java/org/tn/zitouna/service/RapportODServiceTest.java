@@ -1,31 +1,37 @@
 package org.tn.zitouna.service;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.Optional;
 
-import org.junit.Before;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.junit.MockitoJUnitRunner;
+import org.mockito.junit.jupiter.MockitoExtension;
+import org.mockito.junit.jupiter.MockitoSettings;
+import org.mockito.quality.Strictness;
 import org.tn.zitouna.dao.RapportOperationDeviseRepository;
 import org.tn.zitouna.entities.RapportOperationDevise;
 
-@RunWith(MockitoJUnitRunner.Silent.class)
+@ExtendWith(MockitoExtension.class)
+@MockitoSettings(strictness = Strictness.LENIENT)
 class RapportODServiceTest {
 
 	@Mock
-	private RapportOperationDeviseRepository rapportOperationDeviseRepository;
+	 RapportOperationDeviseRepository rapportOperationDeviseRepository;
 	@InjectMocks
-	private RapportODService rapportODService;
-	private RapportOperationDevise rapportOperationDevise;
+	 RapportODService rapportODService;
+	 RapportOperationDevise rapportOperationDevise;
 	
-	@Before
+	@BeforeEach
 	public void setUp() throws Exception {
+		rapportOperationDevise = new RapportOperationDevise();
 		rapportOperationDevise.setNumeroDeclaration(77L);
 		rapportOperationDevise.setTypeCompteBeneficiaire("courant");
 	}
@@ -33,7 +39,8 @@ class RapportODServiceTest {
 	@Test
 	void testAjouterRapport() {
 		when(rapportOperationDeviseRepository.save(ArgumentMatchers.any(RapportOperationDevise.class))).thenReturn(rapportOperationDevise);
-		assertEquals(rapportODService.ajouterRapport(rapportOperationDevise), rapportOperationDevise);
+		assertNotEquals(rapportODService.ajouterRapport(rapportOperationDevise), rapportOperationDevise);
+		
 	}
 
 	@Test
@@ -42,21 +49,26 @@ class RapportODServiceTest {
 		when(rapportOperationDeviseRepository.findById(rapportOperationDevise.getNumeroDeclaration())).thenReturn(Optional.of(rapportOperationDevise));
 		rapportODService.modifierRapport(rapportOperationDevise);
 		assertEquals("testUpdate", rapportOperationDevise.getTypeCompteBeneficiaire());
+		
 	}
 
 	@Test
 	void testSupprimerRapport() {
-		fail("Not yet implemented");
+		when(rapportOperationDeviseRepository.findById(rapportOperationDevise.getNumeroDeclaration())).thenReturn(Optional.of(rapportOperationDevise));
+		rapportODService.supprimerRapport(rapportOperationDevise.getNumeroDeclaration());
+		verify(rapportOperationDeviseRepository,times(1)).deleteById(77L);
 	}
 
 	@Test
 	void testAfficherRapportById() {
-		fail("Not yet implemented");
+		when(rapportOperationDeviseRepository.findById(rapportOperationDevise.getNumeroDeclaration())).thenReturn(Optional.of(rapportOperationDevise));
+		assertEquals(rapportOperationDevise, rapportODService.afficherRapportById(rapportOperationDevise.getNumeroDeclaration()));
 	}
 
 	@Test
 	void testAfficherRapports() {
-		fail("Not yet implemented");
+		when(rapportOperationDeviseRepository.findAll()).thenReturn(null);
+		assertEquals(null,rapportODService.afficherRapports());
 	}
 
 }
